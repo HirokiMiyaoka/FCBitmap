@@ -1,8 +1,6 @@
 package net.azulite.FCBitmap;
 
 import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Paint;
 
 public class FCBitmap
 {
@@ -79,8 +77,6 @@ public class FCBitmap
 	{
 		int x, y, num;
 		Bitmap bitmap = Bitmap.createBitmap( width, height, Bitmap.Config.ARGB_8888 );
-		Canvas canvas = new Canvas( bitmap );
-		Paint paint = new Paint();
 
 		for ( y = 0 ; y < height ; ++y )
 		{
@@ -90,13 +86,11 @@ public class FCBitmap
 				if ( 'A' <= num && num <= 'Z' )
 				{
 					num -= 'A';
-					paint.setColor( table[ num ] );
-					canvas.drawRect( x, y, x + 1, y + 1, paint );
+					bitmap.setPixel( x, y, table[ num ] );
 				} else if ( 'a' <= num && num <= 'z' )
 				{
 					num -= 'a' - 26;
-					paint.setColor( table[ num ] );
-					canvas.drawRect( x, y, x + 1, y + 1, paint );
+					bitmap.setPixel( x, y, table[ num ] );
 				} else if ( num == 0 )
 				{
 					break;
